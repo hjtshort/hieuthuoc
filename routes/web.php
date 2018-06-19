@@ -12,17 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('dashboard', function () {
-    return view('modules.dashboard');
-});
-Route::get('create',function(){
-    return view('modules.themthuoc');
-});
-Route::get('login',function(){
     return view('login');
-});
-Route::get('check',function(){
-    return view('check');
+})->name('/');
+
+
+Route::post('login',['as'=>'plogin','uses'=>'Thuoc@plogin']);
+
+Route::group(['middleware' => ['checkUsers']], function () {
+    Route::get('list',['as'=>'list','uses'=>'Thuoc@index']);
+
+    Route::get('insert',['as'=>'ginsert','uses'=>'Thuoc@ginsert']);
+    Route::post('insert',['as'=>'pinsert','uses'=>'Thuoc@pinsert']);
+
+    Route::get('update/{id}',['as'=>'gupdate','uses'=>'Thuoc@gupdate']);
+    Route::post('update/{id}',['as'=>'pupdate','uses'=>'Thuoc@pupdate']);
+
+    Route::post('remove',['as'=>'remove','uses'=>'Thuoc@remove']);
+
+    Route::get('check',function(){
+        return view('check');
+    });
+    Route::get('logout',['as'=>'logout','uses'=>'Thuoc@logout']);
 });

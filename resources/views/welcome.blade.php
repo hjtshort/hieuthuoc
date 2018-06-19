@@ -18,6 +18,7 @@
         <script src="{{ asset('/assets/js/plugins/moment.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('/assets/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
         <script src="{{ asset('/assets/js/light-bootstrap-dashboard.js') }}" type="text/javascript"></script>
+        <script src="{{asset('/assets/js/bootbox.min.js')}}"></script>
     </head>
     <body>
         <div class="wrapper">

@@ -1,4 +1,4 @@
-﻿@extends('welcome')
+@extends('welcome')
 @section('content1')
 <div class="content">
     <div class="container-fluid">
@@ -6,7 +6,7 @@
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header ">
-                            <h4 class="card-title">Thêm thuốc</h4>
+                            <h4 class="card-title">Cập nhật</h4>
                         </div>
                         <div class="card-body ">
                             <form method="post" action="" class="form-horizontal">
@@ -15,7 +15,7 @@
                                         <div class="row">
                                             <label class="col-sm-2 control-label">Tên thuốc:</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="tenthuoc" class="form-control" placeholder="Tên thuốc . . ." value="{{ old('tenthuoc') }}">
+                                                <input type="text" name="tenthuoc" class="form-control" placeholder="Tên thuốc . . ." value="{{ $info->tenthuoc }}">
                                                 <p class="text-danger">{{$errors->first('tenthuoc')}}</p>
                                             </div>
                                         </div>
@@ -24,7 +24,7 @@
                                         <div class="row">
                                             <label class="col-sm-2 control-label">Số lượng</label>
                                             <div class="col-sm-10">
-                                                <input type="number" name="soluong" class="form-control" placeholder="Số lượng . . ." value="{{ old('soluong') }}">
+                                                <input type="number" name="soluong" class="form-control" placeholder="Số lượng . . ." value="{{ $info->soluong }}">
                                                 <p class="text-danger">{{$errors->first('soluong')}}</p>
                                             </div>
                                         </div>
@@ -33,7 +33,7 @@
                                         <div class="row">
                                             <label class="col-sm-2 control-label">Ngày hết hạn:</label>
                                             <div class="col-sm-10">
-                                                    <input type="text" class="form-control datepicker" name='ngayhethan' placeholder="Chọn ngày" value="{{ old('ngayhethan') }}" />
+                                                    <input type="text" class="form-control datepicker" name='ngayhethan' placeholder="Chọn ngày" value="{{ $info->ngayhethan }}" />
                                                     <p class="text-danger">{{$errors->first('ngayhethan')}}</p>
                                             </div>
                                             <script>
@@ -59,7 +59,7 @@
                                         <div class="row">
                                             <label class="col-sm-2 control-label">Giá sĩ:</label>
                                             <div class="col-sm-10">
-                                                <input type="number" name="giasi" placeholder="Giá bán sĩ . . ." class="form-control" value="{{ old('giasi') }}">
+                                                <input type="number" name="giasi" placeholder="Giá bán sĩ . . ." class="form-control" value="{{ $info->giasi }}">
                                                 <p class="text-danger">{{$errors->first('giasi')}}</p>
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@
                                         <div class="row">
                                             <label class="col-sm-2 control-label">Giá lẻ:</label>
                                             <div class="col-sm-10">
-                                                <input type="mumber" name="giale" placeholder="Giá bán lẻ . . ." class="form-control" value="{{ old('giale') }}">
+                                                <input type="mumber" name="giale" placeholder="Giá bán lẻ . . ." class="form-control" value="{{ $info->giale }}">
                                                 <p class="text-danger">{{$errors->first('giale')}}</p>
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
                                         <div class="row">
                                             <label class="col-sm-2 control-label">Số kệ:</label>
                                             <div class="col-sm-10">
-                                                <input type="number" name="soke" placeholder="Số kệ . . ." class="form-control" value="{{ old('soke') }}">
+                                                <input type="number" name="soke" placeholder="Số kệ . . ." class="form-control" value="{{ $info->soke }}">
                                                 <p class="text-danger">{{$errors->first('soke')}}</p>
                                             </div>
                                         </div>

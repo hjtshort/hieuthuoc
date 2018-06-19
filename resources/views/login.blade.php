@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>Dashboard</title>
+        <title>Admin Login</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -20,7 +20,8 @@
                     <div class="content">
                         <div class="container">
                             <div class="col-md-4 col-sm-6 ml-auto mr-auto mt-5">
-                                <form class="form" method="" action="">
+                                <form class="form" method="post" action="{{ route('plogin') }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="card card-login">
                                         <div class="card-header ">
                                             <h3 class="header text-center">Login</h3>
@@ -29,11 +30,13 @@
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label>Email address</label>
-                                                    <input type="email" placeholder="Enter email" class="form-control">
+                                                    <input type="email" placeholder="Enter email" class="form-control" name="email">
+                                                    <p class="text-danger">{{$errors->first('email')}}</p>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Password</label>
-                                                    <input type="password" placeholder="Password" class="form-control">
+                                                    <input type="password" placeholder="Password" class="form-control" name="pass">
+                                                    <p class="text-danger">{{$errors->first('pass')}}</p>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-check">
