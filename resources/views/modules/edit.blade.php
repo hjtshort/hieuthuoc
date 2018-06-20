@@ -59,7 +59,8 @@
                                         <div class="row">
                                             <label class="col-sm-2 control-label">Giá sĩ:</label>
                                             <div class="col-sm-10">
-                                                <input type="number" name="giasi" placeholder="Giá bán sĩ . . ." class="form-control" value="{{ $info->giasi }}">
+                                                <input id="giasi" type="number" name="giasi" placeholder="Giá bán sĩ . . ." class="form-control" value="{{ $info->giasi }}">
+                                                <p class="text-success giasi"></p>
                                                 <p class="text-danger">{{$errors->first('giasi')}}</p>
                                             </div>
                                         </div>
@@ -68,7 +69,8 @@
                                         <div class="row">
                                             <label class="col-sm-2 control-label">Giá lẻ:</label>
                                             <div class="col-sm-10">
-                                                <input type="mumber" name="giale" placeholder="Giá bán lẻ . . ." class="form-control" value="{{ $info->giale }}">
+                                                <input id="giale" type="mumber" name="giale" placeholder="Giá bán lẻ . . ." class="form-control" value="{{ $info->giale }}">
+                                                <p class="text-success giale"></p>
                                                 <p class="text-danger">{{$errors->first('giale')}}</p>
                                             </div>
                                         </div>
@@ -82,71 +84,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="form-group">
-                                        <div class="row">
-                                            <label class="col-sm-2 control-label">Checkboxes and radios</label>
-                                            <div class="col-sm-10">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign"></span>
-                                                        First Checkbox
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign"></span>
-                                                        Second Checkbox
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-radio">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio" name="exampleRadio" id="exampleRadios1" value="option1">
-                                                        <span class="form-check-sign"></span>
-                                                        Radio is off
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-radio">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio" name="exampleRadio" id="exampleRadios2" value="option2" checked>
-                                                        <span class="form-check-sign"></span>
-                                                        Radio is on
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label class="col-sm-2 control-label">Inline checkboxes</label>
-                                            <div class="col-sm-10">
-                                                <div class="form-check checkbox-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="option1">
-                                                        <span class="form-check-sign"></span>
-                                                        a
-                                                    </label>
-                                                </div>
-                                                <div class="form-check checkbox-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="option2">
-                                                        <span class="form-check-sign"></span>
-                                                        b
-                                                    </label>
-                                                </div>
-                                                <div class="form-check checkbox-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="option3">
-                                                        <span class="form-check-sign"></span>
-                                                        c
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
+                                    
                                     <div style="text-align:right;">
-                                        <button class="btn btn-success" type="submit">Thêm</button>
+                                        <button class="btn btn-success" type="submit">Sửa</button>
                                     </div>
                             </form>
                         </div>
@@ -155,4 +95,35 @@
         </div>
     </div>
 </div>
+<script>
+        $(document).ready(function () {
+            change_money('giasi','giasi')
+            change_money('giale','giale')
+        });
+        $('#giasi').keyup(function (e) { 
+            change_money('giasi','giasi')
+        });
+        $('#giale').keyup(function (e) { 
+            change_money('giale','giale')
+        });
+        function addCommas(nStr)
+            {
+                nStr += '';
+                x = nStr.split('.');
+                x1 = x[0];
+                x2 = x.length > 1 ? '.' + x[1] : '';
+                var rgx = /(\d+)(\d{3})/;
+                while (rgx.test(x1)) {
+                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                }
+                return x1 + x2;
+            }
+            function change_money(cl,cll){
+                var t=$('#'+cll).val().replace(/[,]/g,'');
+               
+               var k=addCommas(t)
+             
+              $('.'+cl).text(addCommas(k)+' VNĐ')
+            }
+    </script>
 @endsection

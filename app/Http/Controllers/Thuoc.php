@@ -11,10 +11,19 @@ use Carbon;
 class Thuoc extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $data=thuocs::all();
-        return view('modules.dashboard', compact('data'));
+        if($request->search && $request->search!=''){
+            $data=thuocs::where('tenthuoc','like','%'.$request->search.'%')
+            ->orWhere('soke',$request->search)->orWhere('ngayhethan','like','%'.$request->search.'%')
+            ->orWhere('created_at','like','%'.$request->search.'%')->paginate(10);
+            return view('modules.dashboard', compact('data'));
+        }
+        else{
+            $data=thuocs::paginate(10);
+            return view('modules.dashboard', compact('data'));
+        }
+        
     }
 
     public function glogin()

@@ -32,7 +32,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.require'=>'Nhập vào email!',
+            'email.required'=>'Nhập vào email!',
+            'email.email'=>'Email không hợp lệ!',
             'pass.required'=>'Nhập vào password!'
         ];
     }

@@ -6,7 +6,7 @@
             </div>
             <div class="info ">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                    <span>Tania Andrew
+                    <span>{{ Auth::user()->name }}
                         <b class="caret"></b>
                     </span>
                 </a>
@@ -35,14 +35,14 @@
             </div>
         </div>
         <ul class="nav">
-            <li class="nav-item ">
+            <li class="nav-item @if(Request::segment(1)=='list') active @endif " >
                 <a class="nav-link" href="{{ route('list') }}">
                     <i class="nc-icon nc-chart-pie-35"></i>
                     <p>Thống kê</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('ginsert') }}">
+            <li class="nav-item  @if(Request::segment(1)=='insert') active @endif">
+                <a class="nav-link" href="{{ route('ginsert') }}" >
                     <i class="nc-icon nc-app"></i>
                     <p>
                         Thêm thuốc

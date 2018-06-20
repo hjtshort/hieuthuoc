@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use View;
+use App\models\thuocs;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('modules/header', function ($view) {
+            $data=thuocs::where('ngayhethan','<=',date('Y-m-d'))->get();
+            $view->with('notify',$data);
+        });
     }
 
     /**
