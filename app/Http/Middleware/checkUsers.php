@@ -18,6 +18,6 @@ class checkUsers
         if(Auth::check())
             return $next($request);
         else
-            return redirect()->route('glogin');
+            return redirect()->route('/');
     }
 }

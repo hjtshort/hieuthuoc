@@ -25,7 +25,7 @@
                         </a>
                         <ul class="dropdown-menu  dropdown-menu-right" style="    overflow-y: scroll;max-height: 300px;">
                             @foreach($notify as $val)
-                            <a class="dropdown-item" href="{{ route('list').'?search='.$val->tenthuoc }}">{{ $val->tenthuoc }}</a>
+                            <a class="dropdown-item" href="{{ route('list').'?search='.$val->tenthuoc }}">{{ $val->tenthuoc }} hết hạn!!!</a>
                             @endforeach
                         </ul>
                     </li>

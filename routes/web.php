@@ -29,8 +29,8 @@ Route::group(['middleware' => ['checkUsers']], function () {
 
     Route::post('remove',['as'=>'remove','uses'=>'Thuoc@remove']);
 
-    Route::get('check',function(){
-        return view('check');
-    });
     Route::get('logout',['as'=>'logout','uses'=>'Thuoc@logout']);
 });
+Route::any('{all}', function(){
+    return redirect()->route('list');
+})->where('all', '.*');

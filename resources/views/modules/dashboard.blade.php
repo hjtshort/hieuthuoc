@@ -40,7 +40,6 @@
                                         </tfoot>
                                         <tbody>
                                             <?php
-                                                
                                                 $timeht=strtotime("+10 Days");
                                                 $timess=date('Y-m-d',$timeht);
                                             ?>
@@ -48,6 +47,7 @@
                                             <tr @if( $timess == $val->ngayhethan || $timess > $val->ngayhethan ) class="text-danger" 
                                                  @endif>
                                                 <td>{{ $key+1 }}</td>
+                                                <td hidden class='id'>{{ $val->id }}</td>
                                                 <td>{{ $val->tenthuoc }}</td>
                                                 <td>{{ $val->soluong }}</td>
                                                 <td>
@@ -60,7 +60,12 @@
                                                 <td>{{ number_format($val->giasi) }}</td>
                                                 <td>{{ number_format($val->giale) }}</td>
                                                 <td>{{ $val->soke }}</td>
-                                                <td>{{ substr($val->created_at,0,strpos($val->created_at,' '))}}</td>
+                                                <td>@if($val->updated_at==null)
+                                                    {{ substr($val->created_at,0,strpos($val->created_at,' ')) }}
+                                                    @else
+                                                    {{ substr($val->updated_at,0,strpos($val->created_at,' ')) }}
+                                                    @endif
+                                                </td>
                                                 <td class="text-right">
                                                     <a href="{{ route('gupdate',$val->id) }}" class="btn btn-link btn-warning edit"><i class="fa fa-edit"></i></a>
                                                     <button  class="btn btn-link btn-danger remove"><i class="fa fa-times"></i></button>
@@ -86,7 +91,7 @@
 </div>
 <script>
     $('.remove').click(function () { 
-                var t=$(this).closest('tr').find('input:checkbox').val()
+                var t=$(this).closest('tr').find('.id').text()
                 bootbox.confirm({
                     message:"Are you sure?",
                     size:"small",

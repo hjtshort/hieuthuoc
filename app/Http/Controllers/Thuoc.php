@@ -16,7 +16,7 @@ class Thuoc extends Controller
         if($request->search && $request->search!=''){
             $data=thuocs::where('tenthuoc','like','%'.$request->search.'%')
             ->orWhere('soke',$request->search)->orWhere('ngayhethan','like','%'.$request->search.'%')
-            ->orWhere('created_at','like','%'.$request->search.'%')->paginate(10);
+            ->orWhere('created_at','like','%'.$request->search.'%')->paginate(10)->withPath('?search='.$request->search);
             return view('modules.dashboard', compact('data'));
         }
         else{
@@ -54,7 +54,8 @@ class Thuoc extends Controller
             'giale'=>$request->giale,
             'ngayhethan'=>$request->ngayhethan,
             'soke'=>$request->soke,
-            'created_at'=>Carbon::now()
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now(),
         ]);
         return redirect()->route('list')->with(['message'=>'Thêm thành công!']);
     }
